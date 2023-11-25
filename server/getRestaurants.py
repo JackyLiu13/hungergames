@@ -124,7 +124,10 @@ def getAdditionalResults(nextPageToken):
         response = requests.get(url).json()
 
         if response["status"] != "OK":
-            raise Exception(response.reason)
+            if "reason" in response:
+                raise Exception(response["reason"])
+            else:
+                raise Exception(response["status"])
 
         additionalResults += response["results"]
         nextPageToken = None
@@ -136,7 +139,10 @@ def getAdditionalResults(nextPageToken):
 
 def main(searchLat, searchLong, searchRadius, maxPrice, excludedTypes):
     restaurants, nextPageToken = getRestaurants(searchLat, searchLong, searchRadius, maxPrice)
-    restaurants += getAdditionalResults(nextPageToken)
+    try:
+        restaurants += getAdditionalResults(nextPageToken)  # This is throwing errors rn and idk why
+    except Exception as e:
+        print(e)
     filteredRestaurants = filterRestaurants(restaurants, excludedTypes)
     parsedRestaurants = parseRestaurants(filteredRestaurants)
 
@@ -145,6 +151,10 @@ def main(searchLat, searchLong, searchRadius, maxPrice, excludedTypes):
 # FOR TESTING
 # if __name__ == '__main__':
 #     restaurants, nextPageToken = getRestaurants(43.51179542015055, -79.66749324203175,10000,3)
-#     restaurants += getAdditionalResults(nextPageToken)
+#     try:
+#         restaurants += getAdditionalResults(nextPageToken)
+#     except Exception as e:
+#         print(e)
 #     filteredRestaurants = filterRestaurants(restaurants, [])
 #     parsedRestaurants = parseRestaurants(filteredRestaurants)
+#     print(parsedRestaurants)
