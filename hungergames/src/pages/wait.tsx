@@ -29,7 +29,7 @@ export default function Wait() {
     event.preventDefault();
 
     try {
-      const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+      const baseUrl = `${process.env.NEXT_PUBLIC_API_IP}`;
       const response = await fetch(`${baseUrl}/done/${gameId}`, {
         method: 'GET'
       });

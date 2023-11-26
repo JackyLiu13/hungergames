@@ -24,7 +24,7 @@ export default function Home() {
   //   event.preventDefault(); // Prevent the default link click action
 
   //   try {
-  //     const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}/games`, {
+  //     const response = await fetch(`${process.env.NEXT_PUBLIC_API_IP}/games`, {
   //       method: 'POST',
   //       headers: {
   //         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function Home() {
     event.preventDefault();
   
     // Make a GET request
-    const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+    const baseUrl = `${process.env.NEXT_PUBLIC_API_IP}`;
     const apiUrl = `${baseUrl}/games/${inputValue}`;
   
     try {

@@ -36,7 +36,7 @@ const Game: React.FC = () => {
     async function fetchData() {
       if (gameId && userId) {
         try {
-          const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+          const baseUrl = `${process.env.NEXT_PUBLIC_API_IP}`;
           const response = await fetch(`${baseUrl}/restaurants/${gameId}`);
           const restaurantData = await response.json();
           enqueueMany(restaurantData);
@@ -54,7 +54,7 @@ const Game: React.FC = () => {
 
   const vote = async (restaurantId: number) => {
     try {
-      const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+      const baseUrl = `${process.env.NEXT_PUBLIC_API_IP}`;
       const response = await fetch(`${baseUrl}/vote/${gameId}/${userId}/${restaurantId}`, {
         method: 'POST'
       });

@@ -19,7 +19,7 @@ function useFetchGameData(gameID: number): [RestaurantData[], boolean, string | 
 
   useEffect(() => {
     const fetchGameData = async () => {
-      const apiUrl = `http://localhost:8000/results/${gameID}`;
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_IP}/results/${gameID}`;
 
       try {
         const response = await fetch(apiUrl);

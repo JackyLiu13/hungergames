@@ -26,7 +26,7 @@ export default function Preference() {
 
     try {
       // Generate gameId
-      const gameResponse = await fetch(`http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}/games`, {
+      const gameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_IP}/games`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function Preference() {
       }
 
       // Get restaurants from Google
-      const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+      const baseUrl = `${process.env.NEXT_PUBLIC_API_IP}`;
       const response = await fetch(`${baseUrl}/restaurants/${gameId}?lat=${lat}&long=${long}&radius=${distance}&maxPrice=${maxPrice}`);
       const data = await response.json();
       console.log(data);
