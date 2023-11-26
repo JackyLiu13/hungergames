@@ -32,8 +32,7 @@ export default function Preference() {
           'Content-Type': 'application/json',
         }
       });
-      const gameData = await gameResponse.json();
-      const gameId = gameData;
+      const gameId = await gameResponse.json();
 
       // Get latitude and longitude from the browser
       const apiKey = '6ca90725cc9a41afbeffbfd09ddda785';

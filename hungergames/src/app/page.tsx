@@ -44,7 +44,8 @@ export default function Home() {
     event.preventDefault();
   
     // Make a GET request
-    const apiUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}/games/${inputValue}`;
+    const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+    const apiUrl = `${baseUrl}/games/${inputValue}`;
   
     try {
       const response = await fetch(apiUrl, {
@@ -61,7 +62,13 @@ export default function Home() {
       // Process the response
       const gameExists = await response.json();
       if (gameExists) {
-        router.push(`/url?gameId=${inputValue}`);
+        // Create new User
+        const userResponse = await fetch(`${baseUrl}/users/${inputValue}`, {
+          method: 'POST'
+        });
+        const userId = await userResponse.json();
+
+        router.push(`/Game?gameId=${inputValue}&userId=${userId}`);
       } else {
         // Display an alert if the game does not exist
         window.alert('Game PIN not valid. Please try again.');
