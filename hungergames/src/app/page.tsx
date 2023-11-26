@@ -28,7 +28,7 @@ export default function Home() {
       const data = await response.json();
       console.log(data);
 
-      router.push(`/url?gameId=${data}`); // Redirect to the URL page with the gameId
+      router.push(`/url?gameId=${data}&userId=1`); // Redirect to the URL page with the gameId
     } catch (error) {
       console.error('Error:', error);
     }

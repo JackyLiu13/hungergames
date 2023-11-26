@@ -24,7 +24,7 @@ export default function Preference() {
   const handleGetRestaurants = async (event: { preventDefault: () => void; }) => {
     event.preventDefault(); // Prevent the default link click action
 
-    const { gameId } = router.query;
+    const { gameId, userId } = router.query;
 
     try {
       // Get latitude and longitude from the browser
@@ -43,7 +43,7 @@ export default function Preference() {
       const data = await response.json();
       console.log(data);
 
-      router.push(`/Game?gameId=${data}`); // Redirect to the Game page with the gameId
+      router.push(`/Game?gameId=${gameId}&userId=${userId}`); // Redirect to the Game page with the gameId
     } catch (error) {
       console.error('Error:', error);
     }

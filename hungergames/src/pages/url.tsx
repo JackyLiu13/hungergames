@@ -4,7 +4,7 @@ import './url.css'
 
 export default function URL() {
     const router = useRouter();
-    const { gameId } = router.query;
+    const { gameId, userId } = router.query;
 
     return (
         <div className="page">
@@ -25,7 +25,7 @@ export default function URL() {
                 </div>
 
                 <div className="userZone">
-                    <Link href={`/preference?gameId=${gameId}`}><button className="button">Enter Game</button></Link>
+                    <Link href={`/preference?gameId=${gameId}&userId=${userId}`}><button className="button">Enter Game</button></Link>
                 </div>
 
                 <div className='footer'>
