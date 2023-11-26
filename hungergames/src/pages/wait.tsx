@@ -34,7 +34,7 @@ export default function Wait() {
         method: 'GET'
       });
       const doneVoting = await response.json();
-      
+
       if (doneVoting) {
         router.push(`/ranking?gameId=${gameId}&userId=${userId}`);
       } else {
