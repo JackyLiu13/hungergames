@@ -70,36 +70,44 @@ export default function Preference() {
           <div className="Selection1">
             <h3>Max Price Level</h3>
             <div className='editBox'>
-              <input
-                type="range"
-                min="1"
-                max="4"
-                value={maxPrice}
-                onChange={handlePriceLevelChange}
-                step="1" />
-              {/* Display repeated dollar signs based on maxPrice */}
-              <p className='distance'>{Array(maxPrice).fill('$').join('')} </p>
+              <div className="sliderBox">
+                <div className="indicator">
+                  <p className='distance'>{Array(maxPrice).fill('$').join('')}</p>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="4"
+                  value={maxPrice}
+                  onChange={handlePriceLevelChange}
+                  step="1"
+                />
+                <div className="sliderRow">
+                  <p style={{ flex: 1, textAlign: 'left' }}>$</p>
+                  <p style={{ flex: 1, textAlign: 'right' }}>$$$$</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="Selection2">
+              <h3>Max Distance</h3>
+              <div className='editBox'>
+                {/* Scrollable input range for distance */}
+                <input
+                  type="range"
+                  min="0"
+                  max="50"
+                  value={distance}
+                  onChange={handleDistanceChange}
+                  step="5" />
+                <p className='distance'>{distance} KM</p>
+              </div>
             </div>
           </div>
 
-          <div className="Selection2">
-            <h3>Max Distance</h3>
-            <div className='editBox'>
-              {/* Scrollable input range for distance */}
-              <input
-                type="range"
-                min="0"
-                max="50"
-                value={distance}
-                onChange={handleDistanceChange}
-                step="5" />
-              <p className='distance'>{distance} KM</p>
-            </div>
+          <div>
+            <button className="button" onClick={handleCreateLobby}>Create Lobby</button>
           </div>
-        </div>
-
-        <div>
-          <button className="button" onClick={handleCreateLobby}>Create Lobby</button>
         </div>
       </div>
     </div>

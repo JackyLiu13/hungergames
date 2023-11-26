@@ -7,3 +7,5 @@ micros:
     run: uvicorn main:app
     dev: myenv/bin/uvicorn main:app --reload
     primary: true
+    public_routes:
+      - "/*"
