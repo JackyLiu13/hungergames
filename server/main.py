@@ -57,6 +57,10 @@ def get_restaurants(game_id: int = None, lat: float = None, long: float = None, 
 def vote(game_id: int, user_id: int, restaurant_id: int):
     return mongoConnect.vote(game_id, user_id, restaurant_id)
 
+@app.get("/done/{game_id}")
+def check_all_users_done(game_id: int) -> bool:
+    return mongoConnect.check_all_users_done(game_id)
+
 @app.get("/results/{game_id}")
 def get_results(game_id: int):
     return mongoConnect.get_results(game_id)
