@@ -108,7 +108,7 @@ export default function Home() {
       </div>
       <div className="foodImage">
         <div className='food'>
-          <img className="foodImage1" src="/fries.png" alt="fries" />
+          <img className="foodImage2" src="/fries.png" alt="fries" />
         </div>
         <div className='food'>
           <img className="foodImage2" src="/noodle.png" alt="fries" />

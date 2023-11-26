@@ -16,16 +16,16 @@ export default function URL() {
                 <div className='text'>
                     <h2>
                         Your Game PIN is generated. <br />
-                        Share with your friends to play together!
+                        Share with your friends!
                     </h2>
                 </div>
 
                 <div className="urlLink">
-                    <h2>{gameId}</h2>
+                    <h2 className='gameID'>{gameId}</h2>
                 </div>
 
                 <div className="userZone">
-                    <Link href={`/Game?gameId=${gameId}&userId=${userId}`}><button className="button">Enter Game</button></Link>
+                    <Link className="button" href={`/Game?gameId=${gameId}&userId=${userId}`}><button className="button">Enter Game</button></Link>
                 </div>
 
                 <div className='footer'>

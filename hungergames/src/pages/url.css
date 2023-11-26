@@ -75,12 +75,12 @@ h3 {
   flex-shrink: 0;
   color: #2e293a;
   font-weight: 800;
-  text-decoration: none;
+  text-decoration:none; 
   margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  margin-top: 2em;
+  margin-top: 3vh;
 }
 
 .arrow {
@@ -105,7 +105,7 @@ h3 {
 }
 
 h2 {
-  color: #726d80;
+  color: #2E293A;;
   font-family: Inter;
   font-size: 2rem;
   font-style: normal;
@@ -113,7 +113,7 @@ h2 {
   line-height: normal;
   margin-top: 0;
   margin-bottom: 0;
-  padding-top: 2em;
+  
 }
 
 p {
@@ -197,5 +197,20 @@ input[type="range"]::-ms-fill-upper {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
+    margin-top: 2vh;
 
+}
+
+.text{
+    padding-top: 2em;
+}
+
+.footer{
+    height: fit-content; 
+}
+
+
+.gameID{
+    position: relative;
+    top:1vh;
 }

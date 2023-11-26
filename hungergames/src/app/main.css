@@ -99,12 +99,14 @@
 
 .foodImage1 {
   float: left;
-  width: 300px;
+  width: 20rem;
+  bottom:0; 
 }
 
 .foodImage2 {
   float: right;
   width: 300px;
+  bottom: 0;
 }
 
 .hand {

@@ -10,15 +10,6 @@
   background-color: #f2be55;
   font-family: "Inter", sans-serif;
 }
-.return {
-  padding-top: 3em;
-  margin-left: 2em;
-}
-
-.returnImage {
-  display: block;
-}
-
 .title {
   padding-left: 3em;
   padding-top: 4em;
@@ -27,7 +18,7 @@
   /* margin-top: 2em; */
   color: #2E1F4F;
   font-family: Inter;
-  font-size: 64px;
+  font-size: 4rem;
 }
 
 .urlLink {

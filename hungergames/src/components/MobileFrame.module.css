@@ -7,7 +7,7 @@
   height: 100vh; /* 100% of the viewport height */
   background: #f2be55;
   width: 450px; /* Fixed width */
-  border-style: solid;
+  /* border-style: solid; */
   border-color: #c19844;
 }
 
