@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import './ranking.css';
 
 interface RestaurantData {
@@ -11,14 +12,14 @@ interface RestaurantData {
 }
 
 // Custom hook for fetching and cleaning data
-function useFetchGameData(gameId: number): [RestaurantData[], boolean, string | null] {
+function useFetchGameData(gameID: number): [RestaurantData[], boolean, string | null] {
   const [data, setData] = useState<RestaurantData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchGameData = async () => {
-      const apiUrl = `http://localhost:8000/results/${gameId}`;
+      const apiUrl = `http://localhost:8000/results/${gameID}`;
 
       try {
         const response = await fetch(apiUrl);
@@ -49,13 +50,20 @@ function useFetchGameData(gameId: number): [RestaurantData[], boolean, string | 
     };
 
     fetchGameData();
-  }, [gameId]);
+  }, [gameID]);
 
   return [data, loading, error];
 }
 
 export default function Wait() {
-  const [restaurantData, loading, error] = useFetchGameData(1);
+  const router = useRouter();
+  const { gameId } = router.query;
+
+  // Convert gameId to a number or use a default value if it's not present
+  const gameID = typeof gameId === 'string' ? parseInt(gameId, 10) : 1;
+  console.log(gameID)
+
+  const [restaurantData, loading, error] = useFetchGameData(gameID);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -64,8 +72,6 @@ export default function Wait() {
   if (error) {
     return <p>Error: {error}</p>;
   }
-
-
 
   return (
     <div className="page">
@@ -90,7 +96,7 @@ export default function Wait() {
               </div>
               <div className="restaurantInfo">
                 <img className="restaurantImg" src={restaurant.imageUrl} alt={`Image of ${restaurant.name}`} />
-                <div className="Info">
+                <div className="info">
                   <h2>{restaurant.name}</h2>
                   <div className="level1">
                     <p>💵{restaurant.priceLevel}</p>

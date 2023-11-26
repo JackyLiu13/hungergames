@@ -16,6 +16,7 @@
 }
 
 .bigTitle {
+  text-align: center;
   float: left;
   display: block;
   color: #2e293a;
@@ -59,13 +60,15 @@
   display: block;
 }
 .restaurant {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 20px;
 }
 .restaurantImg {
   width: 100px;
   height: 100px;
   margin: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px;
 }
 
 .rank {
@@ -78,6 +81,12 @@
   display: inline;
   margin-right: 10px;
   margin-top: 20px;
+}
+
+.score h2 {
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .info {
@@ -108,9 +117,12 @@ p {
 }
 
 .ranking {
-  margin-left: 45px;
+  margin-left: 20px;
   color: #fff;
   font-family: Inter;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
 }
 
 h2 {
