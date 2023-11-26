@@ -26,7 +26,12 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: center; 
-    width:450px; 
+    width:420px; 
+    transition: transform 0.3s ease-in-out;
+}
+
+.hunger:hover{
+    transform: scale(1.2);
 }
 
 .game{

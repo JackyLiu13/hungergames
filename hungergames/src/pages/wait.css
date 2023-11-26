@@ -1,6 +1,4 @@
-.page{
-    background-color:#F2BE55; 
-}
+
 
 
 .main{
@@ -10,7 +8,7 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    
+    background-color:#F2BE55; 
     display: block;
     
 }
