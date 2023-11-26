@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 
 export default function Wait() {
-  const [isResultReady, setIsResultReady] = useState(false);
+  const [isResultReady, setIsResultReady] = useState(true);
 
   // useEffect(() => {
   //   // Fetch the backend boolean value
@@ -36,7 +36,7 @@ export default function Wait() {
 
           {isResultReady && (
              <Link href="/leaderboard">
-             <a className="button">Check result</a>
+             <button className="button">Check result</button>
            </Link>
           )}
         </div>

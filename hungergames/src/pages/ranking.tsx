@@ -43,7 +43,7 @@ function useFetchGameData(gameId: number): [RestaurantData[], boolean, string | 
         setLoading(false);
       } catch (error) {
         console.error('Error fetching jsonData:', error);
-        setError(error.message);
+        // setError(error.message);
         setLoading(false);
       }
     };
