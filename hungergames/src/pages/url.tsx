@@ -25,7 +25,7 @@ export default function URL() {
                 </div>
 
                 <div className="userZone">
-                    <Link href={`/preference?gameId=${gameId}&userId=${userId}`}><button className="button">Enter Game</button></Link>
+                    <Link href={`/Game?gameId=${gameId}&userId=${userId}`}><button className="button">Enter Game</button></Link>
                 </div>
 
                 <div className='footer'>

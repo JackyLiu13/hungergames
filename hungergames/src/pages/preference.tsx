@@ -21,12 +21,20 @@ export default function Preference() {
     setDistance(Number(event.target.value));
   };
 
-  const handleGetRestaurants = async (event: { preventDefault: () => void; }) => {
+  const handleCreateLobby = async (event: { preventDefault: () => void; }) => {
     event.preventDefault(); // Prevent the default link click action
 
-    const { gameId, userId } = router.query;
-
     try {
+      // Generate gameId
+      const gameResponse = await fetch(`http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}/games`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      const gameData = await gameResponse.json();
+      const gameId = gameData;
+
       // Get latitude and longitude from the browser
       const apiKey = '6ca90725cc9a41afbeffbfd09ddda785';
       const locationResponse = await fetch(`https://api.geoapify.com/v1/ipinfo?&apiKey=${apiKey}`);
@@ -38,12 +46,14 @@ export default function Preference() {
         long = -81.3322;
       }
 
+      // Get restaurants from Google
       const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
       const response = await fetch(`${baseUrl}/restaurants/${gameId}?lat=${lat}&long=${long}&radius=${distance}&maxPrice=${maxPrice}`);
       const data = await response.json();
       console.log(data);
 
-      router.push(`/Game?gameId=${gameId}&userId=${userId}`); // Redirect to the Game page with the gameId
+      // router.push(`/Game?gameId=${gameId}&userId=1`); // Redirect to the Game page with the gameId
+      router.push(`/url?gameId=${gameId}&userId=1`); // Redirect to the URL page with the gameId
     } catch (error) {
       console.error('Error:', error);
     }
@@ -108,7 +118,7 @@ export default function Preference() {
 
 
         <div>
-          <button className="button" onClick={handleGetRestaurants}>Get Restaurants</button>
+          <button className="button" onClick={handleCreateLobby}>Create Lobby</button>
         </div>
       </div>
     </div>

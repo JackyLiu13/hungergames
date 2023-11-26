@@ -14,25 +14,25 @@ export default function Home() {
     setInputValue(event.target.value);
   };
 
-  // Fetch API
-  const createNewGame = async (event: { preventDefault: () => void; }) => {
-    event.preventDefault(); // Prevent the default link click action
+  // // Fetch API
+  // const createNewGame = async (event: { preventDefault: () => void; }) => {
+  //   event.preventDefault(); // Prevent the default link click action
 
-    try {
-      const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}/games`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      const data = await response.json();
-      console.log(data);
+  //   try {
+  //     const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}/games`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       }
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
 
-      router.push(`/url?gameId=${data}&userId=1`); // Redirect to the URL page with the gameId
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  //     router.push(`/url?gameId=${data}&userId=1`); // Redirect to the URL page with the gameId
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
 
   return (
     <div className="main">
@@ -52,7 +52,8 @@ export default function Home() {
         <div>
           <button className="button">ENTER GAME</button>
         </div>
-        <Link href="/url" onClick={createNewGame}><p className="newGame">Create New Game</p></Link>
+        <Link href="/preference"><p className="newGame">Create New Game</p></Link>
+        {/* <Link href="/url" onClick={createNewGame}><p className="newGame">Create New Game</p></Link> */}
       </div>
 
       <div className="foodImage">
