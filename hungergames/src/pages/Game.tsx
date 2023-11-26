@@ -67,8 +67,8 @@ const Game: React.FC = () => {
 
   const checkFinish = () => {
     if (size() === 2) {
-      router.push(`/ranking?gameId=${gameId}&userId=${userId}`);
-    };
+      router.push('/wait');
+    }
   }
 
   console.log(getFrontTwo())
