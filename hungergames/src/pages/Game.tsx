@@ -27,14 +27,14 @@ export const DEFAULT_RESTAURANT = {
 
 const Game: React.FC = () => {
   const router = useRouter();
-  const { gameId } = router.query; // Extract gameId from the query parameters
+  const { gameId, userId } = router.query; // Extract gameId from the query parameters
 
   const { getFrontTwo, enqueueMany, enqueue, removeFirstTwo } = useRestaurantsQueue([])
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      if (gameId) {
+      if (gameId && userId) {
         try {
           const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
           const response = await fetch(`${baseUrl}/restaurants/${gameId}`);
@@ -49,8 +49,21 @@ const Game: React.FC = () => {
     }
 
     fetchData();
-  }, [gameId]
+  }, [gameId, userId]
   )
+
+  const vote = async (gameId: number, userId: number, restaurantId: number) => {
+    try {
+      const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+      const response = await fetch(`${baseUrl}/vote/${gameId}/${userId}/${restaurantId}`, {
+        method: 'POST'
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   console.log(getFrontTwo())
 
@@ -71,7 +84,7 @@ const Game: React.FC = () => {
           <h1>TAP TO PICK!</h1>
         </div>
         <div className='cardContainer'>
-          <div className='topCard' onClick={() => { enqueue(firstResto); removeFirstTwo(); }}>
+          <div className='topCard' onClick={() => { vote(Number(gameId), Number(userId), firstResto.restaurantId); enqueue(firstResto); removeFirstTwo(); }}>
             <RestaurantCard
               restaurantName={firstName}
               price={firstPrice}
@@ -80,7 +93,7 @@ const Game: React.FC = () => {
             />
           </div>
 
-          <div className='bottomCard' onClick={() => { enqueue(secondResto); removeFirstTwo(); }}>
+          <div className='bottomCard' onClick={() => { vote(Number(gameId), Number(userId), secondResto.restaurantId); enqueue(secondResto); removeFirstTwo(); }}>
             <RestaurantCard
               restaurantName={secondName}
               price={secondPrice}
