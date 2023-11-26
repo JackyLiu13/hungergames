@@ -39,6 +39,39 @@ export default function Home() {
   //   }
   // };
 
+  // Event listener for the "ENTER GAME" button
+  const handleEnterGameClick = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+  
+    // Make a GET request
+    const apiUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}/games/${inputValue}`;
+  
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Process the response
+      const gameExists = await response.json();
+      if (gameExists) {
+        router.push(`/url?gameId=${inputValue}`);
+      } else {
+        // Display an alert if the game does not exist
+        window.alert('Game PIN not valid. Please try again.');
+        setInputValue('');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
     return (
     <div className="main">
       <div className="title">
