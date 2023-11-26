@@ -39,7 +39,6 @@ h3 {
   display: block;
   float: left;
   margin-top: 3em;
-  margin-left: 2em;
   padding-bottom: 5em;
 }
 
@@ -83,7 +82,7 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  margin-top: 8em;
+  margin-top: 5vh;
 }
 
 .arrow {
