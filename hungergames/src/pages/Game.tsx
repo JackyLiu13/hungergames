@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import MobileFrame from '../components/MobileFrame';
 import RestaurantCard from '@/components/RestaurantCard';
 import './game.css'; // Import the CSS file for styling
-import Queue from './Queue';
 import { useRestaurantsQueue } from '@/hooks';
+import { useRouter } from 'next/router';
 
 export type Restaurant = {
   gameId: number;
@@ -15,45 +15,6 @@ export type Restaurant = {
   photo: string;
 };
 
-const restaurantData = [
-  {
-    "gameId": 1,
-    "restaurantId": 1,
-    "name": "Subway",
-    "address": "@, 941 Oxford St E, Quebec Street, London",
-    "rating": 3.8,
-    "priceLevel": 1,
-    "photo": "https://lh3.googleusercontent.com/places/ANXAkqG2L54xCB8BCWBMDHvoQL9fQVbAfzfYJHv-zj7vZeRzFuHXBQA92n_-2FQxt8325vUe__6yEG9yo6GNt_aDq87N87xINtzn6lQ=s1600-h400"
-  },
-  {
-    "gameId": 1,
-    "restaurantId": 2,
-    "name": "The Springs Restaurant",
-    "address": "310 Springbank Drive, London",
-    "rating": 4.6,
-    "priceLevel": 3,
-    "photo": "https://lh3.googleusercontent.com/places/ANXAkqFsYmyyLWe6EYPHZxTOfREXE7wQIhsHcncaAzQZ_036PGfpL7XBFKsXhMDDBU-JFJT9LDx9Ke41n_K8Ywk2Al30m1KAZdd2tHk=s1600-h400"
-  },
-  {
-    "gameId": 1,
-    "restaurantId": 3,
-    "name": "Tim Hortons",
-    "address": "111 Wharncliffe Road North, London",
-    "rating": 3.7,
-    "priceLevel": 1,
-    "photo": "https://lh3.googleusercontent.com/places/ANXAkqFcHcqdLhV7x14xZhMJPRAaCSM-Qb6QgI3-nJ1G6HaHA3gVT3gV2KJiVXHRz6u13K0mUeZlAGBFzGJGaf3INUL8Sq5l_hhbriM=s1600-h400"
-  },
-  {
-    "gameId": 1,
-    "restaurantId": 4,
-    "name": "Jack Astor's Bar & Grill Richmond Row",
-    "address": "660 Richmond Street Unit #10, London",
-    "rating": 3.9,
-    "priceLevel": 2,
-    "photo": "https://lh3.googleusercontent.com/places/ANXAkqGZTABH1pTpHLrh60M_RRouNmdPP52Aa3FsPy1f4BsLY_g1vwvBXxMRfGZnoZsvqufRfUj-Q-n5WlzgOuUXwyBnmKXNyfvQi7c=s1600-h400"
-  }
-];
-
 export const DEFAULT_RESTAURANT = {
   gameId: 0,
   restaurantId: 0,
@@ -64,54 +25,31 @@ export const DEFAULT_RESTAURANT = {
   photo: '/fries.png',
 }
 
-const gameId = 1; // Hardcoded game ID
-const restaurantQueue = new Queue<Restaurant>();
-
-restaurantData
-  .filter((restaurant) => restaurant.gameId === gameId)
-  .forEach((restaurant) => {
-    restaurantQueue.enqueue(restaurant);
-  });
-
-console.log(restaurantQueue.getItems()); // Add a getItems() method in your Queue class to retrieve the items
-
-
-
 const Game: React.FC = () => {
+  const router = useRouter();
+  const { gameId } = router.query; // Extract gameId from the query parameters
+
   const { getFrontTwo, enqueueMany, enqueue, removeFirstTwo } = useRestaurantsQueue([])
   const [isLoading, setIsLoading] = useState(true);
 
-  //GET restaurant (dictionary) -> queue -> randomize order
-  //queue is restaurants FIFO
-  //START
-  //Grab 2 from head
-  //draw 2
-  //Selection handler, *note we are not keeping track of rounds*
-  //POST to DB to tally aka VOTE && requeue
-  //go back to START until 1 element left
-
-  //once 1 element left -> list view
-
-  // Ennqueue some restaurants
-
-
   useEffect(() => {
     async function fetchData() {
-
-      try {
-        const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
-        const response = await fetch(`${baseUrl}/restaurants/${gameId}`);
-        const restaurantData = await response.json();
-        enqueueMany(restaurantData);
-      }
-      catch (err) { console.log(err) }
-      finally {
-        setIsLoading(false);
+      if (gameId) {
+        try {
+          const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
+          const response = await fetch(`${baseUrl}/restaurants/${gameId}`);
+          const restaurantData = await response.json();
+          enqueueMany(restaurantData);
+        }
+        catch (err) { console.log(err) }
+        finally {
+          setIsLoading(false);
+        }
       }
     }
 
     fetchData();
-  }, []
+  }, [gameId]
   )
 
   console.log(getFrontTwo())
