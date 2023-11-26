@@ -67,7 +67,7 @@ const Game: React.FC = () => {
 
   const checkFinish = () => {
     if (size() === 2) {
-      router.push('/wait');
+      router.push(`/wait?gameId=${gameId}&userId=${userId}`);
     }
   }
 

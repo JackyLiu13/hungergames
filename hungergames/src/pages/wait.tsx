@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './wait.css';
-import Link from 'next/link'; 
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 
 export default function Wait() {
@@ -21,7 +22,8 @@ export default function Wait() {
   //   fetchData();
   // }, []); // Run once when the component mounts
 
-
+  const router = useRouter();
+  const { gameId, userId } = router.query; // Extract gameId from the query parameters
 
   return (
     <div className="page">
@@ -35,9 +37,9 @@ export default function Wait() {
           </h1>
 
           {isResultReady && (
-             <Link href="/leaderboard">
-             <button className="button">Check result</button>
-           </Link>
+            <Link href={`/ranking?gameId=${gameId}&userId=${userId}`}>
+              <button className="button">Check result</button>
+            </Link>
           )}
         </div>
       </div>
