@@ -29,7 +29,7 @@ const Game: React.FC = () => {
   const router = useRouter();
   const { gameId, userId } = router.query; // Extract gameId from the query parameters
 
-  const { getFrontTwo, enqueueMany, enqueue, removeFirstTwo } = useRestaurantsQueue([])
+  const { getFrontTwo, enqueueMany, enqueue, removeFirstTwo, size } = useRestaurantsQueue([])
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Game: React.FC = () => {
   }, [gameId, userId]
   )
 
-  const vote = async (gameId: number, userId: number, restaurantId: number) => {
+  const vote = async (restaurantId: number) => {
     try {
       const baseUrl = `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`;
       const response = await fetch(`${baseUrl}/vote/${gameId}/${userId}/${restaurantId}`, {
@@ -64,6 +64,12 @@ const Game: React.FC = () => {
       console.error('Error:', error);
     }
   };
+
+  const checkFinish = () => {
+    if (size() === 1) {
+      router.push(`/ranking?gameId=${gameId}&userId=${userId}`);
+    };
+  }
 
   console.log(getFrontTwo())
 
@@ -84,7 +90,12 @@ const Game: React.FC = () => {
           <h1>TAP TO PICK!</h1>
         </div>
         <div className='cardContainer'>
-          <div className='topCard' onClick={() => { vote(Number(gameId), Number(userId), firstResto.restaurantId); enqueue(firstResto); removeFirstTwo(); }}>
+          <div className='topCard' onClick={() => {
+            vote(firstResto.restaurantId);
+            enqueue(firstResto);
+            removeFirstTwo();
+            checkFinish();
+          }}>
             <RestaurantCard
               restaurantName={firstName}
               price={firstPrice}
@@ -93,7 +104,12 @@ const Game: React.FC = () => {
             />
           </div>
 
-          <div className='bottomCard' onClick={() => { vote(Number(gameId), Number(userId), secondResto.restaurantId); enqueue(secondResto); removeFirstTwo(); }}>
+          <div className='bottomCard' onClick={() => {
+            vote(secondResto.restaurantId);
+            enqueue(secondResto);
+            removeFirstTwo();
+            checkFinish();
+          }}>
             <RestaurantCard
               restaurantName={secondName}
               price={secondPrice}
