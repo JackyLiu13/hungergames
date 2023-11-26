@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './main.css'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -10,11 +10,6 @@ export default function Home() {
   const [inputValue, setInputValue] = useState('');
   const router = useRouter();
 
-  const inputElement = document.getElementById('userInput') as HTMLInputElement;
-  if (inputElement) {
-    // Set the text color to red
-    inputElement.style.color = 'black';
-  }
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -38,6 +33,14 @@ export default function Home() {
   //     console.error('Error:', error);
   //   }
   // };
+
+  useEffect(() => {
+    const inputElement = document.getElementById('userInput') as HTMLInputElement;
+    if (inputElement) {
+      // Set the text color to red
+      inputElement.style.color = 'black';
+    }
+  }, []);
 
   // Event listener for the "ENTER GAME" button
   const handleEnterGameClick = async (event: { preventDefault: () => void; }) => {
