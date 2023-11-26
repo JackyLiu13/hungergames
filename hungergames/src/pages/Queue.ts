@@ -24,7 +24,7 @@ class Queue<T> {
     return this.items.slice(); // Returning a copy to avoid direct modification of the internal array
   }
 
-  // You can add more methods if needed  
+  // You can add more methods if needed
 }
 
 export default Queue;

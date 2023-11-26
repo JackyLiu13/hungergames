@@ -1,0 +1,1 @@
+export { useRestaurantsQueue } from "./useRestaurants";
