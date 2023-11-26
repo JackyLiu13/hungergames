@@ -66,7 +66,7 @@ const Game: React.FC = () => {
   };
 
   const checkFinish = () => {
-    if (size() === 1) {
+    if (size() === 2) {
       router.push(`/ranking?gameId=${gameId}&userId=${userId}`);
     };
   }
@@ -87,7 +87,9 @@ const Game: React.FC = () => {
     <div className="mainPage">
       <MobileFrame>
         <div className='header'>
-          <h1>TAP TO PICK!</h1>
+          <div className='headerTitle'>
+            <h1>TAP TO PICK!</h1>
+          </div>
         </div>
         <div className='cardContainer'>
           <div className='topCard' onClick={() => {

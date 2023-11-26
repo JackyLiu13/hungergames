@@ -4,12 +4,17 @@ import React, { useState } from 'react';
 import './main.css'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+// ... (existing imports)
 
 export default function Home() {
-  // State for the input value
   const [inputValue, setInputValue] = useState('');
   const router = useRouter();
 
+  const inputElement = document.getElementById('userInput') as HTMLInputElement;
+  if (inputElement) {
+    // Set the text color to red
+    inputElement.style.color = 'black';
+  }
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -34,7 +39,7 @@ export default function Home() {
   //   }
   // };
 
-  return (
+    return (
     <div className="main">
       <div className="title">
         <img className="hunger" src="/title.svg" alt="title text" />
@@ -50,12 +55,14 @@ export default function Home() {
           onChange={handleInputChange}
         />
         <div>
-          <button className="button">ENTER GAME</button>
+          {/* Attach the event listener to the button click */}
+          <button id="enterGame" className="button" onClick={handleEnterGameClick}>
+            ENTER GAME
+          </button>
         </div>
         <Link href="/preference"><p className="newGame">Create New Game</p></Link>
         {/* <Link href="/url" onClick={createNewGame}><p className="newGame">Create New Game</p></Link> */}
       </div>
-
       <div className="foodImage">
         <div className='food'>
           <img className="foodImage1" src="/fries.png" alt="fries" />
