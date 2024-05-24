@@ -1,5 +1,16 @@
 # Hunger Games 🍽️
 
+# Try it out 
+[https://hungergameshw.vercel.app/](https://hungergameshw.vercel.app/) <br>
+![Watch the demo](https://youtu.be/JGoeCXVeavI)
+<br>
+![gallery](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/682/866/datas/gallery.jpg)
+![gallery](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/682/867/datas/gallery.jpg)
+![gallery](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/682/871/datas/gallery.jpg)
+
+# [Figma Design](https://www.figma.com/proto/HLdhOvx5lVWge3kYYFWFr6/HACKWESTERN10---HOST?page-id=0%3A1&node-id=29-10871&scaling=scale-down&starting-point-node-id=28%3A6&mode=design&t=rNwYKeLNJLwEz5dd-1)
+
+
 ## Inspiration 💡
 We felt inspired by a problem we all faced too often - wanting to enjoy a nice meal out with your friends only to end up hangry (hangry: the act of becoming angry from being too hungry) after spending too long trying to decide on a place to go. 😡 -> 😋
 
