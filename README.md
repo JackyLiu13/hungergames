@@ -6,6 +6,7 @@
 <br>
 ![gallery](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/682/866/datas/gallery.jpg)
 ![gallery](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/682/867/datas/gallery.jpg)
+![gallery](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/682/869/datas/gallery.jpg)
 ![gallery](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/682/871/datas/gallery.jpg)
 
 # [Figma Design](https://www.figma.com/proto/HLdhOvx5lVWge3kYYFWFr6/HACKWESTERN10---HOST?page-id=0%3A1&node-id=29-10871&scaling=scale-down&starting-point-node-id=28%3A6&mode=design&t=rNwYKeLNJLwEz5dd-1)
